@@ -6,3 +6,4 @@ tzdata==2023.4
 django-htmx==1.17.2
 django-compressor==4.4
 gunicorn==21.0.0
+whitenoise==6.6.0
