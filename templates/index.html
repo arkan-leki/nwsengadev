@@ -1,0 +1,145 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+
+<main>
+
+    <div class="px-4 pt-6">
+        <div class="flex gap-4 flex-row ">
+            <!-- Main widget -->
+            <div
+                class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
+                    <h3 class="text-xl font-semibold dark:text-white">
+                        گەڕان بە دوای مولك
+                    </h3>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <!-- Hidden alert element -->
+
+                    <form hx-get="{% url 'search_view' %}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+                        hx-swap="innerHTML" hx-trigger="submit" hx-target="#tbo" class="p-3">
+                        <div class="grid grid-cols-6 gap-2">
+                            {% for field in form %}
+                            <div class="col-span-1 sm:col-span-3">
+                                <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ field.label }}
+                                </div>
+                                <div>
+                                    {{ field }}
+                                </div>
+                                {% if field.errors %}
+                                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                                    role="alert">
+                                    {{ field.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <div id="errors">
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-700">
+                            <button
+                                class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                type="submit" data-modal-toggle="user-modal">
+                                خەزن
+                            </button>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 2 columns -->
+
+            <div
+                class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm flex-1 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                <!-- Card header -->
+                <div class="items-center justify-between lg:flex">
+                    <div class="mb-4 lg:mb-0">
+                        <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">کڕینەکان</h3>
+                        <span class="text-base font-normal text-gray-500 dark:text-gray-400">
+                            لیسیتی داوین کڕینەکان
+                        </span>
+                    </div>
+                </div>
+                <!-- Table -->
+                <div class="flex flex-col mt-6">
+                    <div class="overflow-x-auto rounded-lg">
+                        <div class="inline-block min-w-full align-middle">
+                            <div class="overflow-hidden shadow">
+                                <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
+                                    <thead class="bg-gray-100 dark:bg-gray-700 md:table-header-group hidden">
+                                        <tr>
+                                            <th scope="col" class="p-4">
+                                                <div class="flex items-center">
+                                                    <input id="checkbox-all" aria-describedby="checkbox-1"
+                                                        type="checkbox"
+                                                        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="checkbox-all" class="sr-only">checkbox</label>
+                                                </div>
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                ناوی مولک
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                گەڕەک
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                ڕووبەر
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                سند
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                ئاراستە
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                نرخ
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                کەمترین نرخ
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-start text-gray-500 uppercase dark:text-gray-400">
+                                                لینک
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody
+                                        class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700 p-4"
+                                        id="tbo" hx-get="{% url 'buys-list' %}" hx-trigger="load, every 60s"
+                                        hx-interval="50" hx-target="this">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Footer -->
+                <div class="flex items-center justify-between pt-3 sm:pt-6">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

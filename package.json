@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3",
+    "tailwindcss-rtl": "^0.9.0"
+  },
+  "dependencies": {
+    "apexcharts": "^3.42.0",
+    "flowbite": "^1.8.1"
+  }
+}

@@ -1,0 +1,45 @@
+{% for buy in buys %}
+<tr class="hover:bg-gray-100 dark:hover:bg-gray-700" id="buy_{{buy.id}}">
+    <td class="w-4 p-4">
+        <div class="flex items-center">
+            <input id="checkbox-1" aria-describedby="checkbox-1" type="checkbox"
+                   class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+            <label for="checkbox-1" class="sr-only">checkbox</label>
+        </div>
+    </td>
+
+    <td class="flex items-center p-4 me-12 space-x-6 whitespace-nowrap">       
+        <div class=" text-sm font-normal text-gray-500 dark:text-gray-400">
+            <div class="text-base font-semibold text-gray-900 dark:text-white"> {{ buy.get_type_display  }} -  {{ buy.owner_name }}
+            </div>
+            <div class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{buy.city}} , {{buy.country}}
+            </div>
+        </div>
+    </td>
+    <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+        {{buy.neighborhood}}
+    </td>
+    <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        {{buy.area}} متر٢
+    </td>
+    <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+        {{buy.documentation}}
+    </td>
+    <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+        {{buy.direction}}
+    </td>
+    <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        ${{buy.max_price}}
+    </td>
+    <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+        {{buy.min_price}}
+    </td>
+    <td class="p-4 text-base font-medium text-blue-900 whitespace-nowrap dark:text-blue-500">
+       <a href="{{buy.link}}"> 
+        <svg class="w-6 h-6 text-gray-800 dark:text-blue-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
+            <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+          </svg>
+       </a>
+    </td>
+</tr>
+{% endfor %}
