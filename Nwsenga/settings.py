@@ -121,21 +121,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-LOGOUT_REDIRECT_URL = "/"  # new
-LOGIN_REDIRECT_URL = "/"
+# LOGOUT_REDIRECT_URL = "/"  # new
+# LOGIN_REDIRECT_URL = "/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# COMPRESS_ROOT = BASE_DIR / 'static'
-
-# COMPRESS_ENABLED = True
-
-# STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
 JAZZMIN_SETTINGS = {
     "site_title": "Online CMS",
