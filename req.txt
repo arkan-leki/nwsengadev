@@ -3,5 +3,4 @@ Django==5.0
 django-jazzmin==2.6.0
 sqlparse==0.4.4
 tzdata==2023.4
-django-admin
-django-htmx 1.17.2
+django-htmx==1.17.2
